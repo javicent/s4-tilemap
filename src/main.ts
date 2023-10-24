@@ -8,6 +8,8 @@ const gridCtx = gridCanvas.getContext("2d") as CanvasRenderingContext2D;
 const selectCanvas = document.getElementById("selectCanvas") as HTMLCanvasElement;
 const selectCtx = selectCanvas.getContext("2d") as CanvasRenderingContext2D;
 
+const selectedTileCanvas = document.getElementById("selectedTileCanvas") as HTMLCanvasElement;
+const selectedTileCtx = selectedTileCanvas.getContext("2d") as CanvasRenderingContext2D;
 
 //defining the textures to use
 const imageUrls = [
@@ -81,7 +83,9 @@ gridCanvas.addEventListener("click", (e) => {
 
     tilemap[coordX][coordY].src = currentTile;
     redrawTilemap();
-})
+    // Update the selected tile canvas with the currently selected tile
+    drawTexture(0, 0, selectedTileCtx, tilemap[coordX][coordY], selectedTileCanvas.width, selectedTileCanvas.height, 64);
+});
 
 
 // ----- Interacting with the selectable tilemap -----
@@ -98,5 +102,6 @@ function drawSelectCanvas()
 
 selectCanvas.addEventListener("click", (e) => {
     const coordY = Math.trunc(e.offsetY / selectHeight);
-    currentTile = imageUrls[coordY];
+    currentTile = imageUrls[coordY];    
 })
+
