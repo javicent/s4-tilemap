@@ -23,6 +23,14 @@ const imageUrls = [
     "/tile8.png"
 ];
 
+const tileImages = {};
+
+for (let i = 0; i < imageUrls.length; i++) {
+    const image = new Image();
+    image.src = imageUrls[i];
+    tileImages[imageUrls[i]] = image;
+}
+
 
 //defining the size of the main grid
 const numTiles = 32;
@@ -37,6 +45,17 @@ const selectHeight = selectCanvas.height / numSelectables;
 
 //creating the tilemap nested array
 let tilemap: HTMLImageElement[][] = new Array(numTiles);
+
+let tilemap = new Array(numTiles);
+
+// for (let i = 0; i < numTiles; i++) {
+//     let row = new Array(numTiles);
+//     for (let j = 0; j < numTiles; j++) {
+//         // Set the initial tile as the first texture (e.g., "/tile1.png")
+//         row[j] = tileImages["/tile1.png"];
+//     }
+//     tilemap[i] = row;
+// }
 
 for(let i = 0; i < numTiles; i++) {
     let row = new Array(numTiles);
